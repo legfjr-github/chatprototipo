@@ -5,6 +5,7 @@ import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
 import json
 import base64
+import pytz
 
 # load_dotenv(find_dotenv())
 encoded_key = os.getenv("TESTE")
@@ -17,6 +18,7 @@ with open('temp.json', 'w') as file:
     json.dump(service_key, file)
 
 st.set_page_config(page_title="Assistente PROGEPE")
+timezone = pytz.timezone('America/Sao_Paulo')
 
 st.markdown("""
 <style>
