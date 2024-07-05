@@ -48,9 +48,14 @@ worksheet_title = "Log"
 gc = pygsheets.authorize(service_account_file=credential_file)
 temp = gc.open(sheet_title)
 sheet = temp.worksheet_by_title(worksheet_title)
+hora = datetime.now(timezone).strftime("%d/%m/%Y %H:%M:%S")
+
+if "contador" not in st.session_state:
+    st.session_state.contador = 0
+
 if "diff" not in st.session_state:
     cont = int(sheet.cell("E1").value) + 1
-    st.session_state.diff = f"Chat nº {cont} iniciado as {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}" 
+    st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
     sheet.update_value(f'E1', cont)
 
 
@@ -59,7 +64,9 @@ def save_message(sheet, speaker, message):
     last_row = len(all_records) + 2  # Próxima linha vazia
     sheet.update_value(f'A{last_row}', speaker)
     sheet.update_value(f'B{last_row}', message)
-    sheet.update_value(f'C{last_row}', st.session_state.diff)
+    texto = st.session_state.diff +" " + " mensagem nº " + str(st.session_state.contador)
+    sheet.update_value(f'C{last_row}', texto)
+    st.session_state.contador += 1 
 
 inicio = 0
 if inicio == 0:
