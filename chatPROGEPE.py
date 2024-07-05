@@ -34,7 +34,7 @@ span{visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<img style="float: left;" width=150px src="https://www.ufpe.br/documents/4462600/0/PGD+LOGO.png/2783cf94-3db6-4270-9f2b-ba32901120e8?t=1715183714641" /><h1>Assistente PROGEPE</h1>', unsafe_allow_html=True)
+st.markdown('<img style="float: left;" width=150px src="https://www.ufpe.br/documents/20181/60718/Progepe-100px-margem.png/cb408fe1-7c38-4cef-9619-cb861e8f5310?t=1471545541049" /><h1>Assistente PROGEPE</h1>', unsafe_allow_html=True)
 
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
 
@@ -46,7 +46,7 @@ temp = gc.open(sheet_title)
 sheet = temp.worksheet_by_title(worksheet_title)
 if "diff" not in st.session_state:
     cont = int(sheet.cell("E1").value) + 1
-    st.session_state.diff = f"Chat nº {cont} iniciado as {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}" 
+    st.session_state.diff = f"Chat nº {cont} iniciado as {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}" 
     sheet.update_value(f'E1', cont)
 
 
