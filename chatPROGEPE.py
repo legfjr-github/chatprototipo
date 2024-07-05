@@ -3,7 +3,6 @@ from datetime import datetime
 import pygsheets
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
-from dotenv import load_dotenv, find_dotenv
 import json
 import base64
 
