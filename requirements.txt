@@ -1,0 +1,8 @@
+langchain[all]
+streamlit
+langchain-google-genai
+openai
+tiktoken
+streamlit
+pygsheets
+pytz
