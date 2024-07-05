@@ -51,7 +51,7 @@ sheet = temp.worksheet_by_title(worksheet_title)
 hora = datetime.now(timezone).strftime("%d/%m/%Y %H:%M:%S")
 
 if "contador" not in st.session_state:
-    st.session_state.contador = 0
+    st.session_state.contador = 1
 
 if "diff" not in st.session_state:
     cont = int(sheet.cell("E1").value) + 1
@@ -76,7 +76,7 @@ if "diff" not in st.session_state:
     st.session_state.diff = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    save_message(sheet, "NovoChat", "NovoChat")
+    # save_message(sheet, "NovoChat", "NovoChat")
     
 pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
 
