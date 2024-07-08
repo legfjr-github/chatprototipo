@@ -9,7 +9,7 @@ import pytz
 
 # load_dotenv(find_dotenv())
 encoded_key = os.getenv("TESTE")
-service_key= json.loads(base64.b64decode(encoded_key).decode('ASCII'))
+service_key= json.loads(base64.b64decode(encoded_key).decode('UTF-8'))
 perguntaEnc = os.getenv("PERGUNTA")
 perguntaEnc = str(perguntaEnc)
 pergunta = base64.b64decode(perguntaEnc).decode('UTF-8')
