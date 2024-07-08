@@ -60,14 +60,12 @@ if "diff" not in st.session_state:
 
 api_key = os.getenv(f'key{st.session_state.api%6}')
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
-
 def save_message(sheet, speaker, message):
     all_records = sheet.get_all_records()
     last_row = len(all_records) + 2  # Próxima linha vazia
     sheet.update_value(f'A{last_row}', speaker)
     sheet.update_value(f'B{last_row}', message)
-    texto = st.session_state.diff +" " + " mensagem nº " + str(st.session_state.contador)
+    texto = st.session_state.diff +" " + " mensagem nº " + str(st.session_state.contador).zfill(3)
     sheet.update_value(f'C{last_row}', texto)
     st.session_state.contador += 1 
 
@@ -92,6 +90,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("Digite sua dúvida..."):
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
