@@ -40,8 +40,6 @@ span{visibility: hidden;}
 
 st.markdown('<img style="float: left; padding-right: 3%;" width=150px src="https://www.ufpe.br/documents/20181/60718/Progepe-100px-margem.png/cb408fe1-7c38-4cef-9619-cb861e8f5310?t=1471545541049" /><h1>Assistente PROGEPE</h1>', unsafe_allow_html=True)
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
-
 credential_file = "temp.json"
 sheet_title = "1.ProgepeChat"
 worksheet_title = "Log"
@@ -57,7 +55,12 @@ if "diff" not in st.session_state:
     cont = int(sheet.cell("E1").value) + 1
     st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
     sheet.update_value(f'E1', cont)
+    if "api" not in st.session_state:
+        st.session_state.api = cont
 
+api_key = os.getenv(f'key{st.session_state.api%6}')
+
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
 
 def save_message(sheet, speaker, message):
     all_records = sheet.get_all_records()
