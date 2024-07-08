@@ -58,7 +58,7 @@ if "diff" not in st.session_state:
     if "api" not in st.session_state:
         st.session_state.api = cont
 
-api_key = os.getenv(f'key{st.session_state.api%6}')
+api_key = os.getenv(f'key{st.session_state.api%10}')
 
 def save_message(sheet, speaker, message):
     all_records = sheet.get_all_records()
