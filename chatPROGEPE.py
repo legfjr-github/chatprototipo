@@ -59,7 +59,7 @@ if "diff" not in st.session_state:
         st.session_state.api = cont
 
 api_key = os.getenv(f'key{st.session_state.api%6}')
-print(api_key)
+
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
 
 def save_message(sheet, speaker, message):
