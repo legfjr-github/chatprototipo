@@ -38,7 +38,7 @@ span{visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<img style="float: left; padding-right: 3%;" width=150px src="https://www.ufpe.br/documents/20181/60718/Progepe-100px-margem.png/cb408fe1-7c38-4cef-9619-cb861e8f5310?t=1471545541049" /><h1>Assistente PROGEPE</h1>', unsafe_allow_html=True)
+st.markdown('<p style="font-size:8px;text-align: center;" >As respostas costumam demorar entre 5 e 15 segundos, a depender da complexidade da pergunta e tamanho da resposta.</p><img style="float: left; padding-right: 3%;" width=150px src="https://www.ufpe.br/documents/20181/60718/Progepe-100px-margem.png/cb408fe1-7c38-4cef-9619-cb861e8f5310?t=1471545541049" /><h1>Assistente PROGEPE</h1>', unsafe_allow_html=True)
 
 credential_file = "temp.json"
 sheet_title = "1.ProgepeChat"
