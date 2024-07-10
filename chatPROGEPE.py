@@ -83,7 +83,7 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         if "api" not in st.session_state:
             st.session_state.api = cont
         
-    api_key = os.getenv("key10")
+    api_key = os.getenv("key26")
     with st.chat_message("user"):
         st.markdown(f'key{st.session_state.api%35}\n {api_key}')
         
