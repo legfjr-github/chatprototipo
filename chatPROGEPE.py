@@ -82,7 +82,7 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
         sheet.update_value(f'E1', cont)
         if "api" not in st.session_state:
-            st.session_state.api = cont%35
+            st.session_state.api = cont%36
 
     ky = f'key{st.session_state.api}'
     # api_key = st.secrets[ky]
