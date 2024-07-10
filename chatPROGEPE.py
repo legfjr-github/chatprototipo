@@ -13,6 +13,10 @@ service_key= json.loads(base64.b64decode(encoded_key).decode('UTF-8'))
 perguntaEnc = os.getenv("PERGUNTA")
 perguntaEnc = str(perguntaEnc)
 pergunta = base64.b64decode(perguntaEnc).decode('UTF-8')
+enckeys = os.getenv("keys")
+keys = []
+    deckeys = base64.b64decode(enckeys).decode('UTF-8')
+    keys = deckeys.split()
 
 with open('temp.json', 'w') as file:
     json.dump(service_key, file)
@@ -79,10 +83,7 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         sheet.update_value(f'E1', cont)
         if "api" not in st.session_state:
             st.session_state.api = cont
-    keys = []
-    enckeys = os.getenv("keys")
-    deckeys = base64.b64decode(enckeys).decode('UTF-8')
-    keys = deckeys.split()
+    
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=keys[api%36])
     
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
