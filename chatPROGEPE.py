@@ -15,8 +15,8 @@ perguntaEnc = str(perguntaEnc)
 pergunta = base64.b64decode(perguntaEnc).decode('UTF-8')
 enckeys = os.getenv("keys")
 keys = []
-    deckeys = base64.b64decode(enckeys).decode('UTF-8')
-    keys = deckeys.split()
+deckeys = base64.b64decode(enckeys).decode('UTF-8')
+keys = deckeys.split()
 
 with open('temp.json', 'w') as file:
     json.dump(service_key, file)
