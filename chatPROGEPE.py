@@ -64,8 +64,6 @@ inicio = 0
 if inicio == 0:
     inicio = 1
 
-if "diff" not in st.session_state:
-    st.session_state.diff = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
 if "messages" not in st.session_state:
     st.session_state.messages = []
     # save_message(sheet, "NovoChat", "NovoChat")
