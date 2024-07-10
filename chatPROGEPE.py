@@ -82,9 +82,10 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
         sheet.update_value(f'E1', cont)
         if "api" not in st.session_state:
-            st.session_state.api = cont
+            st.session_state.api = cont%35
 
-    api_key = st.secrets[f'key{st.session_state.api%35}']
+    ky = f'key{st.session_state.api}'
+    api_key = st.secrets[ky]
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
     
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=api_key)
