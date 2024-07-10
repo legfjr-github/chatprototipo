@@ -80,8 +80,8 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         if "api" not in st.session_state:
             st.session_state.api = cont
         
-    api_key = os.getenv("keyaa")
-    llm = ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-1.5-flash")
+    GOOGLE_API_KEY = os.getenv("keyaa")
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=GOOGLE_API_KEY)
     
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
     
