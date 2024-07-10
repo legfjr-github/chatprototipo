@@ -51,15 +51,6 @@ hora = datetime.now(timezone).strftime("%d/%m/%Y %H:%M:%S")
 if "contador" not in st.session_state:
     st.session_state.contador = 1
 
-if "diff" not in st.session_state:
-    cont = int(sheet.cell("E1").value) + 1
-    st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
-    sheet.update_value(f'E1', cont)
-    if "api" not in st.session_state:
-        st.session_state.api = cont
-
-api_key = os.getenv(f'key{st.session_state.api%20}')
-
 def save_message(sheet, speaker, message):
     all_records = sheet.get_all_records()
     last_row = len(all_records) + 2  # Próxima linha vazia
@@ -78,8 +69,6 @@ if "diff" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
     # save_message(sheet, "NovoChat", "NovoChat")
-    
-pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
 
 for message in st.session_state.messages:
     if message["role"] == "user":
@@ -90,6 +79,16 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("Digite sua dúvida..."):
+    if "diff" not in st.session_state:
+        cont = int(sheet.cell("E1").value) + 1
+        st.session_state.diff = f"Chat nº {str(cont).zfill(4)} iniciado as {hora}" 
+        sheet.update_value(f'E1', cont)
+        if "api" not in st.session_state:
+            st.session_state.api = cont
+        
+    api_key = os.getenv(f'key{st.session_state.api%35}')
+    pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
+    
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
     with st.chat_message("user"):
         st.markdown(prompt)
