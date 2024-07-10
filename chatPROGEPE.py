@@ -66,7 +66,6 @@ if inicio == 0:
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    # save_message(sheet, "NovoChat", "NovoChat")
 
 for message in st.session_state.messages:
     if message["role"] == "user":
