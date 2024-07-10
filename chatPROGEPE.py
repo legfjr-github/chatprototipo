@@ -84,7 +84,8 @@ if prompt := st.chat_input("Digite sua dúvida..."):
             st.session_state.api = cont
         
     api_key = os.getenv(f'key{st.session_state.api%35}')
-    print(api_key)
+    with st.chat_message(message["role"]):
+        st.markdown(message[api_key])
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
     
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
