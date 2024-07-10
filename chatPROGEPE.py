@@ -79,9 +79,8 @@ if prompt := st.chat_input("Digite sua dúvida..."):
         sheet.update_value(f'E1', cont)
         if "api" not in st.session_state:
             st.session_state.api = cont
-        
-    os.environ["GOOGLE_API_KEY"] = os.getenv("keyaa")
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
+    keys = base64.b64decode(os.getenv("keys")).decode('UTF-8')
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=keys[api%36])
     
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
     
