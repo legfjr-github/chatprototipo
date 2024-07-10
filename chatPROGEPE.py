@@ -85,10 +85,10 @@ if prompt := st.chat_input("Digite sua dúvida..."):
             st.session_state.api = cont%35
 
     ky = f'key{st.session_state.api}'
-    api_key = st.secrets[ky]
+    # api_key = st.secrets[ky]
     pergunta += st.session_state.diff + "\n" + "--Início do Chat--\n"
     
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=api_key)
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash",google_api_key=st.secrets["key14"])
     
     with st.chat_message("user"):
         st.markdown(prompt)
