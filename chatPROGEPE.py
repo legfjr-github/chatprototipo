@@ -21,7 +21,7 @@ pergunta = base64.b64decode(perguntaEnc).decode('UTF-8')
 with open('temp.json', 'w') as file:
     json.dump(service_key, file)
 
-st.set_page_config(page_title="Assistente PROGEPE")
+st.set_page_config(page_title="Protótipo Assistente")
 timezone = pytz.timezone('America/Sao_Paulo')
 
 st.markdown("""
